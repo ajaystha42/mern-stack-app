@@ -4,10 +4,6 @@ const router = express.Router();
 const User = require("./../models/user");
 const path = require("path");
 
-router.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "./../public/index.html"));
-});
-
 router.post("/user", (req, res, next) => {
   console.log(req.body);
   const user = new User({
@@ -48,5 +44,9 @@ router.get("/users", (req, res, next) => {
 //     }
 //   });
 // });
+
+router.get("/*", (req, res, next) => {
+  res.sendFile(path.join(__dirname + "./../public/index.html"));
+});
 
 module.exports = router;
